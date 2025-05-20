@@ -2,85 +2,152 @@
 
 ## Introduction
 
-This project will focus on the creation of a static website using HTML and CSS only. You are asked to create a static website for a specified client.
-The website will consist of subpages which should be reachable under separate paths.
-
-The website has to conform with accessibility standards (WCAG) and implement SEO best practices,
-as it will be used to attract new users for a product of the client.
-
-Responsiveness is also important and the website should look good on three different viewports:
-mobile, tablet, and desktop.
-
-The client will supply the competitors with a defined website structure and will therein define all
-the pages and sections of the website. The client will also provide all content for the website,
-such as text, images, and other media, as well as the exact definitions of the
-responsive breakpoints.
+This project will focus on the creation of a the creation of a dynamic website using a server-side framework. You are asked to create create a dynamically and server-side rendered website which the users of the product will use to manage their accounts and additional information.
 
 ## General Description of Project and Tasks
 
-The website must consist of four different pages which will be explained in detail in this sections.
-The design of all subpages should be aligned.
+In this module, competitors will create a dynamically and server-side rendered website
+which the users of the product will use to manage their accounts and additional information.
 
-Within the media files, the client provided some media, icons, and text.
-You are free to use them or create custom assets on your own.
+Parts of the website are protected and only accessible after a successful login.
+As this website will be publicly exposed, it must implement the OWASP guidelines.
 
-As the website will be publicly available, it is important to the client that the website conforms to accessibility standards (WCAG) and implements SEO best practices.
+The client will provide a detailed description of all the required functionalities of this website.
+From that, competitors must come up with a database design and implement the website based on it.
+Some example data will be provided in the form of CSV files which competitors must use.
+However, this CSV data might not be normalized and it is up to the competitors to import it
+into their database schema.
 
-The website must be responsive and support at least the following viewports:
-
-- Mobile: 360x640
-- Tablet: 768x1024
-- Desktop: 1920x1080
-
-No server-side or client-side framework is allowed for this project.
-CSS preprocessors may be used, but the generated code must still pass the W3C validations.
-All HTML and CSS code must pass the W3C validations, even generated one.
+Module B has to be implemented using a server-side framework.
+It is possible to use additional libraries in the frontend for interactivity, but rendering must be
+performed by the server-side framework, and _not_ by a client-side framework calling an API.
+Framework and library availability will be limited and will be decided by all experts using
+the EuroSkills forums.
 
 ## Requirements
 
-The goal of the website is to promote a suite of AI driven APIs.
-Potential customers must be able to inform themselves about the possibilities of those APIs, the pricing, and the team behind this product.
+The goal of this project is to create a server-side rendered website which customers can use to manage
+their API usage and billing.
+It is possible to use additional libraries in the frontend for interactivity, but rendering must be
+performed by the server-side framework, and _not_ by a client-side framework calling an API.
 
-You can add more information and elements to all pages as you see fit.
-It's also possible to add links that point towards pages that do not exist yet (for example to a login page).
+The project does not have a database yet, and it is therefore also in the scope of this task
+to come up with a new database design and import a provided CSV file with partial example data.
 
-For each page, some example text and more are provided in the media files.
-However, not all the provided material has to be used.
+As this website will be publicly exposed, it must implement the OWASP guidelines.
 
-The following pages must be implemented.
+### Competitor Information
 
-### Home Page
+Module B will be assessed using the provided version of Google Chrome.
+Different security aspects will be tested.
 
-A short but catching home page.
-The idea is to show the product with some simple information and engaging media.
-It must contain links to the product and pricing pages where interested visitors can find more information.
+The design of the website is not important in this first iteration.
+The client will mostly focus on the functionality but some basic styling is expected to make
+it readable and usable.
 
-### Product Page
+### Website Requirements
 
-The product page shows the whole AI API suite, by listing all available APIs and their features.
+The website must provide the following functionality.
 
-### Pricing Page
+#### Login
 
-On the pricing page, the pricing of the APIs must be explained.
+All other pages are protected and not accessible to non-authenticated users.
+Login must be possible by providing a username and a password.
+As the first version of the website will only allow users to sign up by invitation only, it is not necessary to be able to register accounts.
 
-### Team Page
+However, please create the following accounts:
 
-As the client is also looking to grow their team, a dedicated team page must show the current employees and also highlight some core values of the company.
+- Username: `demo1`<br>Password: `skills2023d1`
+- Username: `demo2`<br>Password: `skills2023d2`
 
-### Global Elements
+The password must be stored in a secure way (hashed) in case someone gets access to the database.
 
-The following elements must be available on all pages:
+#### Workspaces
 
-- **Header**: must at least include a product name in form of text or a logo
-- **Navigation**: contains easily accessible links to all pages
-- **Footer**: includes at least a copyright notice
+Users can create as many workspaces as they like.
+Workspaces act as a way to separate the API usage.
+All of the following functionality (API tokens, billing quotas, bills) are scoped to a workspace.
 
-All elements can be enriched with more information where it makes sense.
+After login, the user is redirected to their list of workspaces.
+On that page, they can create or update workspaces.
+Users can only access and modify their own workspaces.
+
+For each workspace, they have the possibility to manage the API tokens, billing quotas, and bills. This additional functionality can also be provided on separate pages through links and does not have to be on the same page.
+
+A workspace has the following attributes:
+
+- A required **title** (max 100 characters, unique within the user account)
+- An optional **description** of any length
+
+#### API Tokens
+
+For each workspace, it is possible to create one or more API tokens.
+All available tokens of a workspace are listed with their name and the creation date.
+
+The actual token is only revealed once when it is created. It is not possible to view the token again after creation.
+
+Each token can be revoked. If it is revoked, it cannot be used anymore.
+It is also not possible to activate a revoked token again.
+In the token list, it is clearly visible when a token is revoked and the revocation date is shown.
+
+A token has the following attributes:
+
+- A required **name** (max 100 characters)
+- A randomly generated **token** of at least 40 characters
+- An automatically set **creation date**
+- A **revocation date** which is set once it is revoked
+
+#### Billing Quotas
+
+It is possible to set and remove a user-defined billing quota per workspace.
+Each call to the provided API costs a certain amount of money.
+If a billing quota is set, it defines the maximum amount that can be spent on API calls within the assigned workspace per calendar month.
+If the quota is exceeded, usage of the API is not possible anymore for all API tokens of this workspace.
+
+Quotas are displayed in the following way:
+
+- If no quota is set, the costs of the current calendar month is shown, but it must also be clear that there is no maximum.
+- If a quota is set, the costs and the maximum of the current calendar month are shown. Also, the number of remaining days in the current billing cycle is shown so users know when it will reset.
+
+A billing quota has the following attributes:
+
+- A **limit** in dollars for each calendar month
+
+#### Bills
+
+For each passed calendar month, a bill is generated and visible to the users.
+
+Each API token can access services that are exposed through an API.
+The user pays for using those services based on the time it takes to compute the result.
+Each service can cost a different amount of money per second.
+
+The bill contains the following data per API token and per accessed service which is exposed through an API:
+
+- Usage of the service for a specific API token in seconds
+- Cost of the service per second (static value per service)
+- Usage cost of the specific token and service
+- If a token did not access a service, that service must not be listed
+- If a token was not used at all, that token must not be listed
+
+A total row will also show the total cost over all API tokens and services.
+The total costs are rounded to two decimal points for displaying purpose only.
+
+The client has provided the following example mockup to show their idea of a bill.
+However, it is possible to change it or come up with a completely different layout.
+
+![Bills Example](./assets/bills-example.png)
+
+### Example Data
+
+To already have some example data to generate bills and check if calculations are correct, the client provided a CSV file with some billing related example data.
+
+Import the data of this file into your own database schema.
+The imported data must be normalized.
 
 ## Assessment
 
-Module A will be assessed using Google Chrome and Firefox.
-The axe browser extension is installed in Google Chrome and allows competitors to validate the website according to the accessibility standards WCAG.
+This project will be assessed using the latest stable version of Google Chrome.
+Different security aspects will be tested.
 
 ## Mark distribution
 
@@ -90,10 +157,10 @@ WorldSkills Occupation Standards.
 
 | WSOS SECTION | Description                            | Points |
 | ------------ | -------------------------------------- | ------ |
-| 1            | Work organization and self-management  | 1      |
-| 2            | Communication and interpersonal skills | 1      |
-| 3            | Design Implementation                  | 15     |
+| 1            | Work organization and self-management  | 0      |
+| 2            | Communication and interpersonal skills | 0      |
+| 3            | Design Implementation                  | 5      |
 | 4            | Front-End Development                  | 0      |
-| 5            | Back-End Development                   | 0      |
+| 5            | Back-End Development                   | 18     |
 |              |                                        |        |
-| **Total**    |                                        | 17     |
+| **Total**    |                                        | 23     |
