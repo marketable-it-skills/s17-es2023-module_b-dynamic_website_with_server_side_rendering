@@ -1,8 +1,8 @@
-# Test Project Outline – Module A – Static Website Design
+# Test Project Outline – Module B – Dynamic Website with Server-Side Rendering
 
 ## Introduction
 
-This project will focus on the creation of a the creation of a dynamic website using a server-side framework. You are asked to create create a dynamically and server-side rendered website which the users of the product will use to manage their accounts and additional information.
+This project will focus on the creation of a the creation of a framework. You are asked to create create a dynamically and server-side rendered website which the users of the product will use to manage their accounts and additional information.
 
 ## General Description of Project and Tasks
 
