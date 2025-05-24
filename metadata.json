@@ -1,9 +1,34 @@
-{
-  "name": "ES2023 S17 - Module B",
-  "displayName": "Dynamic website with server-side rendering",
-  "description": "This project involves creating a dynamic website using server-side rendering techniques.",
-  "url": "https://github.com/marketable-it-skills/s17-es2023-module_b-dynamic_website_with_server_side_rendering",
-  "skillDomains": ["Web Technologies"],
-  "competition": "EuroSkills Gdansk 2023",
-  "tags": ["SSR", "PHP", "Laravel", "Node.js", "Next.js", "MySQL"]
+ {
+    "id": 2,
+    "name": "ES2023 S17 - Module B",
+    "displayName": "Dynamic website with server-side rendering",
+    "description": "This project involves creating a dynamic website using server-side rendering techniques.",
+    "url": "https://github.com/marketable-it-skills/s17-es2023-module_b-dynamic_website_with_server_side_rendering",
+    "skillDomainIds": [
+      1
+    ],
+    "competition": "EuroSkills Gdansk 2023",
+    "estTime": 4,
+    "authors": [
+      {
+        "name": "Cyril Wanner",
+        "url": "https://www.linkedin.com/in/cyrilwanner"
+      },
+      {
+        "name": "Sebastian Häni",
+        "url": "https://www.linkedin.com/in/sebastian-haeni/"
+      }
+    ],
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Node.js",
+      "Next.js",
+      "MySQL"
+    ],
+    "tags": [
+      "SSR",
+      "admin",
+      "backend"
+    ]
 }
